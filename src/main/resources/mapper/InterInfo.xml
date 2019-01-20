@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.honda.intertest.dao.InterInfo">
+	<!-- 取别名快捷方式进行查询使用 -->
+	<sql id="interInfo">
+		caseId,DNS,interUrl,requestMethod,needDesignReq,requestJson,reqParam,needInit,InitCode,needDesignRes,expectRes,resParam,needRoll,rollCode,usedParam
+	</sql>
+	
+	<!-- 查询一个用户 -->
+	<select id="getCaseById" parameterType="hashmap" resultType="com.honda.intertest.pojo.InterPojo">
+		select <include refid="interInfo"/> from tbl_inter_info where status=0 and caseId=#{caseId}
+	</select>
+
+	<!-- 查询所有记录 -->
+	<select id="getAllInterInfo" resultType="com.honda.intertest.pojo.InterPojo">
+		select <include refid="interInfo"/> from tbl_inter_info where status=0
+	</select>
+
+	<!-- 按条件查询 -->
+	<!-- <select id="getUserInfoByConditon" parameterType="hashmap" resultType="com.honda.webtest.pojo.User">
+		select <include refid="userInfo" /> from tbl_user_base
+		<where>
+			1=1 and status=0
+			<if test="name != null">
+				and name like "%"#{name}"%"
+			</if>
+			<if test="age != null">
+				and age=#{age}
+			</if>
+		</where>
+	</select> -->
+	
+	<!-- 新增 -->
+	<!-- <insert id="saveUser" parameterType="com.honda.webtest.pojo.User" keyProperty="id" useGeneratedKeys="true">
+		insert into tbl_user_base (name,sex,age,country,province)
+		values(#{name},#{sex},#{age},#{country},#{province})
+	</insert> -->
+
+	<!-- 修改 -->
+	<!-- <update id="updateUser" parameterType="com.honda.webtest.pojo.User">
+		update tbl_user_base
+		<set>
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="sex!=null">
+				sex=#{sex},
+			</if>
+			<if test="age!=null">
+				age=#{age},
+			</if>
+			<if test="country!=null">
+				country=#{country},
+			</if><if test="province!=null">
+				province=#{province},
+			</if>
+		</set>
+		where id=#{id} and status=0
+	</update> -->
+	
+	<!-- 删除 -->
+	<!-- <delete id="deleteUser" parameterType="Integer">
+		update tbl_user_base set status=1 where id=#{id}
+	</delete> -->
+</mapper>

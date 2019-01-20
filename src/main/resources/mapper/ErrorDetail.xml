@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.honda.intertest.dao.ErrorDetail">
+	<sql id="errorInfo">
+		errorCode, errorDesc
+	</sql>
+	<select id="getAllError" resultType="com.honda.intertest.pojo.ErrorDetailPojo">
+		select <include refid="errorInfo"/> from tbl_inter_error where status=0
+	</select>
+</mapper>
